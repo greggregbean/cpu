@@ -1,6 +1,19 @@
+void DumpLabels(label* labelBuffer, int labelSize)
+{
+    printf("LABELS: ");
+
+    for(int i = 0; i < labelSize; i++)
+    {
+        if(*(labelBuffer[i].name) != '\0')
+            printf("[%d]:%s(%d); ", i, labelBuffer[i].name, labelBuffer[i].num);
+    }
+
+    printf("\n");
+}
+
 void DumpCommandLine (int* CommandLine, int translatorIp)
 {
-    printf ("--------------------------------------------\n");
+    printf ("----------------------------------------------------------------------------------------------------------\n");
 
     for (int i = 0; i < translatorIp; i++)
     {
@@ -16,8 +29,9 @@ void DumpCommandLine (int* CommandLine, int translatorIp)
 
     printf("\n");
 
-    printf ("--------------------------------------------\n");
+    printf ("----------------------------------------------------------------------------------------------------------\n");
 }
+
 
 int determineCommand(char* command)
 {
@@ -47,13 +61,12 @@ int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, in
             nameOfLabel++;
         }
 
-        int i = 0;
-
-        for (i = 0; i < (*labelsSize); i++)
+        for (int i = 0; i < *labelsSize; i++)
         {
             if (strcmp(nameOfLabel, labelBuffer[i].name) == 0)
             {
-                return labelBuffer[i].num;
+                if(labelBuffer[i].num != -1)
+                    return labelBuffer[i].num;
             }
         }
 
@@ -67,7 +80,6 @@ int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, in
 
         return -1;
 }
-
 
 void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize)
 {
@@ -110,13 +122,8 @@ int paramDeterminator(char* param, FILE* source, FILE* distance,  int* translato
             return 0;
 }
 
-void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuffer)
+void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuffer, int* commandLine, int* translatorIp, int* labelsSize)
 {
-    int labelsSize = 0;
-
-    int commandLine [LENOFCOMMANDLINE] = {'\0'};
-    int translatorIp = 0;
-
     char symbol = '\0';
     int numoflines = 0;
 
@@ -130,21 +137,21 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
     fseek(source, 0, SEEK_SET);
 
-    for (int lineNum = 0; lineNum < numoflines-1; DumpCommandLine (commandLine, translatorIp), lineNum++)
+    for (int lineNum = 0; lineNum < numoflines-1; DumpCommandLine (commandLine, (*translatorIp)), lineNum++)
     {
-        printf("\nTranslatorIP: %d \n", translatorIp);
+        printf("\nTranslatorIp: %d \n", (*translatorIp));
 
         char command[MAXCOMMANDLEN] = {'\0'};
 
         fscanf(source, "%s", command);
 
-
-
         if (command[0] == ':')
         {
             printf("There is a label: \"%s\" \n", command);
 
-            labelDeterminator(command, translatorIp, labelBuffer, &labelsSize);
+            labelDeterminator(command, (*translatorIp), labelBuffer, labelsSize);
+
+            DumpLabels(labelBuffer, *translatorIp);
 
             continue;
         }
@@ -165,7 +172,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
                 printf("Current param: \"%s\" \n", param);
 
-                int result = paramDeterminator(param, source, distance,  &translatorIp, commandLine, CMD_PUSHR);
+                int result = paramDeterminator(param, source, distance,  translatorIp, commandLine, CMD_PUSHR);
 
                 printf("paramDeterminator() returned: %d \n", result);
 
@@ -175,7 +182,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
                 else
                 {
                     fprintf(distance, "1 ");
-                    commandLine[translatorIp++] = 1;
+                    commandLine[(*translatorIp)++] = 1;
 
                     int paramlen = 0;
                     while (param[paramlen] != '\0')
@@ -188,7 +195,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
                     int num = 0;
                     fscanf(source, "%d", &num);
                     fprintf(distance, "%d\n", num);
-                    commandLine[translatorIp++] = num;
+                    commandLine[(*translatorIp)++] = num;
 
                     getc(source);
                     continue;
@@ -202,7 +209,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
                 if (spaceOrEnter == '\n')
                 {
                     fprintf(distance, "%d\n", CMD_POP);
-                    commandLine[translatorIp++] = CMD_POP;
+                    commandLine[(*translatorIp)++] = CMD_POP;
                     continue;
                 }
 
@@ -212,7 +219,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
                 printf("Current param: \"%s\" \n", param);
 
-                int result = paramDeterminator(param, source, distance,  &translatorIp, commandLine, CMD_POPR);
+                int result = paramDeterminator(param, source, distance,  translatorIp, commandLine, CMD_POPR);
 
                 printf("paramDeterminator() returned: %d \n", result);
 
@@ -224,7 +231,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
                 else if (typeOfCommand == numCommand)        \
                 {                                             \
                     fprintf(distance, "%d\n", numCommand);     \
-                    commandLine[translatorIp++] = numCommand;   \
+                    commandLine[(*translatorIp)++] = numCommand;   \
                     continue;                                    \
                 }                                                 \
 
@@ -234,7 +241,9 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
             else if (typeOfCommand == CMD_JMP)
             {
-                jumpDeterminator(source, distance, &translatorIp, commandLine, labelBuffer, &labelsSize);
+                jumpDeterminator(source, distance, translatorIp, commandLine, labelBuffer, labelsSize);
+
+                DumpLabels(labelBuffer, *translatorIp);
 
                 continue;
             }
@@ -246,7 +255,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
     }
 
-    fprintf(distance, "TRANSLATOR IP: %d \n", translatorIp);
+    fprintf(distance, "TRANSLATOR IP: %d \n", (*translatorIp));
     fprintf(distance, "COMMANDLINE: ");
 
     int i = 0;
@@ -258,9 +267,6 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
     fprintf(distance, "\n");
 
-    fwrite(commandLine, sizeof(int), translatorIp, binarycode);
-
     printf("TRANSLATION HAS BEEN COMPLETED:\n"
-           "Numerical code is in numericalcode.txt\n"
-           "Binary code is in binarycode.bin\n");
+           "Numerical code is in numericalcode.txt\n");
 }

@@ -7,7 +7,7 @@ pop rax
 pop rbx
 pop rcx
 pop rdx
-:next
+jmp next
 pop
 out
 add
@@ -16,7 +16,7 @@ mul
 div
 sqrt
 in
-jmp next
+:next
 hlt
 
 

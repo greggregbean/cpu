@@ -13,7 +13,6 @@ typedef struct
 {
     char name [MAXLABELNAME];
     int num;
-
 } label;
 
 #define DEF_CMD( name, num, ... ) \
@@ -40,6 +39,6 @@ int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, in
 void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize);
 int determineCommand(char* command);
 int paramDeterminator(char* param, FILE* source, FILE* distance,  int* translatorIp, int* commandLine, int numOfCommand);
-void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuffer);
+void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuffer, int* commandLine, int* translatorIp, int* labelsSize);
 
 #include "translator.cpp"
