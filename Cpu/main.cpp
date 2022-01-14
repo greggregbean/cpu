@@ -4,7 +4,7 @@
 #include <string.h>
 #include <txlib.h>
 
-FILE* LOGFILE = fopen("logfile.txt", "w");
+FILE* LOGFILE = fopen("../logfile.txt", "w");
 
 #include "../SCT.h"
 
