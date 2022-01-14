@@ -44,7 +44,7 @@ datatype stkpop(stack* stk)
 
     if (stk -> size == 1)
     {
-        printf("You cannot pop from stack, size is 0. \n \n");
+        printf("AHTUNG! You cannot pop from stack, size is 0. Undefined behavior! \n \n");
         return 0;
     }
 

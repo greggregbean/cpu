@@ -1,4 +1,8 @@
-push 5
+push 2
+push 2
+push 2
+push 2
+push 2
 push   rax
 push rbx
 push rcx
@@ -7,7 +11,6 @@ pop rax
 pop rbx
 pop rcx
 pop rdx
-jmp next
 pop
 out
 add
@@ -16,6 +19,7 @@ mul
 div
 sqrt
 in
+jmp next
 :next
 hlt
 

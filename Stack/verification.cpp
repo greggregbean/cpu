@@ -9,7 +9,6 @@ void printstk(stack* stk)
         stk -> printElem (stk -> data[num]);
     }
 
-    printf("\n");
 }
 
 void PrintInt (int val)
