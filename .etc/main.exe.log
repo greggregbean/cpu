@@ -1,0 +1,225 @@
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Programming\cpu\main.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042DBEC в функции main() в файле D:/Programming/cpu/main.cpp на строке 23. Попытка записать данные по адресу 0x00000190 в модуле D:\Programming\cpu\main.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x005072FC (32-bit), Flags: Cmdre0, Thread: 0x9DC (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042DBEC in D:\Programming\cpu\main.exe: main() at D:/Programming/cpu/main.cpp (23):
+
+     21:     cpu proc = {'\0'};
+     22: 
+=>   23:     proc.commandLine[LENOFCOMMANDLINE] = {'\0'};
+     24: 
+     25:     fread(proc.commandLine, sizeof proc.commandLine[0], LENOFCOMMANDLINE, binarycode);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	d:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 30 2021 19:04:47, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 30 2021 19:04:55
+
+Run file:	D:\Programming\cpu\main.exe
+Directory:	D:\Programming\cpu
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Programming\cpu\main.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042DBEC в функции main() в файле D:/Programming/cpu/main.cpp на строке 23. Попытка записать данные по адресу 0x00000190 в модуле D:\Programming\cpu\main.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x005072FC (32-bit), Flags: Cmdre0, Thread: 0x9DC (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042DBEC in D:\Programming\cpu\main.exe: main() at D:/Programming/cpu/main.cpp (23):
+
+     21:     cpu proc = {'\0'};
+     22: 
+=>   23:     proc.commandLine[LENOFCOMMANDLINE] = {'\0'};
+     24: 
+     25:     fread(proc.commandLine, sizeof proc.commandLine[0], LENOFCOMMANDLINE, binarycode);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	d:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 30 2021 19:04:47, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 30 2021 19:04:55
+
+Run file:	D:\Programming\cpu\main.exe
+Directory:	D:\Programming\cpu
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Programming\cpu\main.exe, файл: D:\Programming\cpu\cpuConstructor.cpp, строка: 4, функция: void cpuConstructor(cpu*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "proc -> stk != __null".
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x005072FC (32-bit), Flags: Cmdre0, Thread: 0x13CC (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042DA5D in D:\Programming\cpu\main.exe: cpuConstructor() at D:/Programming/cpu/cpuConstructor.cpp (4):
+
+      2: {
+      3:     assert (proc                != NULL);
+=>    4:     assert (proc -> stk         != NULL);
+      5:     assert (proc -> commandLine != NULL);
+      6:     assert (proc -> registers   != NULL);
+
+# 1 0x0042DE6A in D:\Programming\cpu\main.exe: main() at D:/Programming/cpu/main.cpp (23):
+
+     21:     cpu proc = {'\0'};
+     22: 
+=>   23:     cpuConstructor(&proc);
+     24: 
+     25:     fread(proc.commandLine, sizeof (int), LENOFCOMMANDLINE, binarycode);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	d:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 30 2021 20:03:07, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 30 2021 20:03:15
+
+Run file:	D:\Programming\cpu\main.exe
+Directory:	D:\Programming\cpu
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Programming\cpu\main.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9EF в функции cpuConstructor() в файле D:/Programming/cpu/cpuConstructor.cpp на строке 4. Попытка записать данные по адресу NULL в модуле D:\Programming\cpu\main.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x005072FC (32-bit), Flags: Cmdre0, Thread: 0x2B58 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9EF in D:\Programming\cpu\main.exe: cpuConstructor() at D:/Programming/cpu/cpuConstructor.cpp (4):
+
+      2: {
+      3:     proc -> commandLine = (int*) calloc(LENOFCOMMANDLINE, sizeof(int));
+=>    4:     proc -> stk -> data = (int*) calloc(STKCAPACITY,      sizeof(int));
+      5:     proc -> registers   = (int*) calloc(REGISTERSLEN,     sizeof(int));
+      6:     proc -> ip = 0;
+
+# 1 0x0042DC59 in D:\Programming\cpu\main.exe: main() at D:/Programming/cpu/main.cpp (23):
+
+     21:     cpu proc = {'\0'};
+     22: 
+=>   23:     cpuConstructor(&proc);
+     24: 
+     25:     fread(proc.commandLine, sizeof (int), LENOFCOMMANDLINE, binarycode);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	d:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 30 2021 20:07:19, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 30 2021 20:07:26
+
+Run file:	D:\Programming\cpu\main.exe
+Directory:	D:\Programming\cpu
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Programming\cpu\main.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9EF в функции cpuConstructor() в файле D:/Programming/cpu/cpuConstructor.cpp на строке 4. Попытка записать данные по адресу NULL в модуле D:\Programming\cpu\main.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x005072FC (32-bit), Flags: Cmdre0, Thread: 0x2B58 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9EF in D:\Programming\cpu\main.exe: cpuConstructor() at D:/Programming/cpu/cpuConstructor.cpp (4):
+
+      2: {
+      3:     proc -> commandLine = (int*) calloc(LENOFCOMMANDLINE, sizeof(int));
+=>    4:     proc -> stk -> data = (int*) calloc(STKCAPACITY,      sizeof(int));
+      5:     proc -> registers   = (int*) calloc(REGISTERSLEN,     sizeof(int));
+      6:     proc -> ip = 0;
+
+# 1 0x0042DC59 in D:\Programming\cpu\main.exe: main() at D:/Programming/cpu/main.cpp (23):
+
+     21:     cpu proc = {'\0'};
+     22: 
+=>   23:     cpuConstructor(&proc);
+     24: 
+     25:     fread(proc.commandLine, sizeof (int), LENOFCOMMANDLINE, binarycode);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	d:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 30 2021 20:07:19, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 30 2021 20:07:26
+
+Run file:	D:\Programming\cpu\main.exe
+Directory:	D:\Programming\cpu
+
+--------------------------------------------------

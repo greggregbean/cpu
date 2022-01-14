@@ -1,0 +1,22 @@
+push 5
+push   rax
+push rbx
+push rcx
+push rdx
+pop rax
+pop rbx
+pop rcx
+pop rdx
+:next
+pop
+out
+add
+sub
+mul
+div
+sqrt
+in
+jmp next
+hlt
+
+
