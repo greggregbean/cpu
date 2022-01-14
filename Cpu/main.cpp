@@ -34,4 +34,6 @@ int main ()
     printf("\n\n");
 
     cpufunc(&proc, lenOfCommandline);
+
+    cpuDistructor(&proc);
 }

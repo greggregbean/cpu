@@ -4,9 +4,9 @@
 #include <string.h>
 #include <txlib.h>
 
-#include "../SCT.h"
+FILE* LOGFILE = fopen("../logfile.txt", "w");
 
-FILE* LOGFILE = fopen("logfile.txt", "w");
+#include "../SCT.h"
 
 int main ()
 {
@@ -31,9 +31,9 @@ int main ()
         printf("[%02d]%03d ", i, proc.commandLine[i]);
     }
 
-    printf("\n");
+    printf("\n\n");
 
     cpufunc(&proc, lenOfCommandline);
     
-    
+    cpuDistructor(&proc);
 }
