@@ -1,4 +1,4 @@
-// --- STACK ---
+// --- STACK
 #include "Stack/stack.h"
 
 // --- TRANSLATOR --
@@ -18,6 +18,7 @@ typedef struct
 
 void cpuConstructor(cpu* proc);
 void cpufunc(cpu* proc);
+void regprint(cpu* proc);
 
 #include "Cpu/cpuConstructor.cpp"
 #include "Cpu/cpufunc.cpp"

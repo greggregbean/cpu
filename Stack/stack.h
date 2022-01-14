@@ -38,7 +38,7 @@ int verificator(stack* stk, FILE* logfile);
 void stkconstructor(stack* stk, int capacity, void (*printFunc) (datatype data), void (*printFuncInLogfile) (datatype data));
 void stkpush(stack* stk, datatype val);
 void stkresize(stack* stk, double val);
-void stkpop(stack* stk);
+datatype stkpop(stack* stk);
 void stackdump(int statusOfVerification, stack* stk);
 void printstk(stack* stk);
 void PrintLongInt (long int val);

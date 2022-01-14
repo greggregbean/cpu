@@ -31,7 +31,7 @@ int main ()
         printf("[%02d]%03d ", i, proc.commandLine[i]);
     }
 
-    printf("\n");
+    printf("\n\n");
 
     cpufunc(&proc, lenOfCommandline);
 }

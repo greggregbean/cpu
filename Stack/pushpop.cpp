@@ -38,14 +38,14 @@ void stkpush(stack* stk, datatype val)
     printf("\n");
 }
 
-void stkpop(stack* stk)
+datatype stkpop(stack* stk)
 {
     assert (stk != NULL);
 
     if (stk -> size == 1)
     {
         printf("You cannot pop from stack, size is 0. \n \n");
-        return ;
+        return 0;
     }
 
     if (stk -> size == 2)
@@ -60,4 +60,6 @@ void stkpop(stack* stk)
     printstk(stk);
 
     printf("\n");
+
+    return(stk -> data[(stk -> size) + 1]);
 }
