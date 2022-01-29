@@ -32,7 +32,6 @@ void DumpCommandLine (int* CommandLine, int translatorIp)
     printf ("----------------------------------------------------------------------------------------------------------\n");
 }
 
-
 int determineCommand(char* command)
 {
     #define DEF_CMD(strCommand, numCommand)                       \
@@ -63,9 +62,12 @@ int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, in
 
         for (int i = 0; i < *labelsSize; i++)
         {
-            if (strcmp(nameOfLabel, labelBuffer[i].name) == 0)
+            if ((strcmp(nameOfLabel, labelBuffer[i].name) == 0))
             {
-                if(labelBuffer[i].num != -1)
+                if (labelBuffer[i].num != -1)
+                    return labelBuffer[i].num;
+                else
+                    labelBuffer[i].num = labelAdress;
                     return labelBuffer[i].num;
             }
         }
