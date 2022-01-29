@@ -8,8 +8,8 @@
 
 int main ()
 {
-    FILE* textcode      = fopen("../Run/textcode.txt",      "r"); assert (textcode);
-    FILE* numericalcode = fopen("../Run/numericalcode.txt", "w"); assert (numericalcode);
+    FILE* textcode      = fopen("../Run/textcode.txt",       "r"); assert (textcode);
+    FILE* numericalcode = fopen("../Run/numericalcode.txt",  "w"); assert (numericalcode);
     FILE* binarycode    = fopen("../Run/binarycode.bin",    "wb"); assert (binarycode);
 
     int commandLine [LENOFCOMMANDLINE] = {'\0'};

@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <string.h>
 #include <txlib.h>
+#include <math.h>
 
 FILE* LOGFILE = fopen("../logfile.txt", "w");
 
@@ -34,6 +35,8 @@ int main ()
     printf("\n\n");
 
     cpufunc(&proc, lenOfCommandline);
+
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \nTHE PROGRAMM HAS BEEN COMPLETED. \n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n");
 
     cpuDistructor(&proc);
 }

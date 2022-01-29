@@ -67,13 +67,7 @@ void cpufunc(cpu* proc, int lenOfCommandline)
 
                 (proc -> ip)++;
 
-                int regParam = stkpop(&(proc -> stk));
-
-                printf("Reg param: %d. \n", regParam);
-
-                proc -> registers [proc -> commandLine [proc -> ip]] = regParam;
-
-                printf("Reg elememnt [%d]: %d. \n", proc -> commandLine [proc -> ip], proc -> registers [proc -> commandLine [proc -> ip]]);
+                proc -> registers [proc -> commandLine [proc -> ip]] = stkpop(&(proc -> stk));
 
                 (proc -> ip)++;
 
@@ -136,6 +130,86 @@ void cpufunc(cpu* proc, int lenOfCommandline)
 
                 break;
             }
+
+            case CMD_MUL:
+            {
+                printf("Command: mul. \n");
+
+                int a = stkpop(&(proc -> stk));
+                printf("Param a: %d. \n", a);
+
+                int b = stkpop(&(proc -> stk));
+                printf("Param b: %d. \n", b);
+
+                stkpush(&(proc -> stk), a * b);
+                printf("Param a * Param b = %d. \n", a * b);
+
+                (proc -> ip)++;
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_DIV:
+            {
+                printf("Command: div. \n");
+
+                int a = stkpop(&(proc -> stk));
+                printf("Param a: %d. \n", a);
+
+                int b = stkpop(&(proc -> stk));
+                printf("Param b: %d. \n", b);
+
+                stkpush(&(proc -> stk), ((a * 1000) / b) / 1000);
+                printf("Param a / Param b = %d. \n", a / b);
+
+                (proc -> ip)++;
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_SQRT:
+            {
+                printf("Command: sqrt. \n");
+
+                int a = stkpop(&(proc -> stk));
+                printf("Param a: %d. \n", a);
+
+                int sqrta = sqrt(a * 1000) / sqrt(1000);
+
+                stkpush(&(proc -> stk), sqrta);
+                printf("sqrt(a) = %d. \n", sqrta);
+
+                (proc -> ip)++;
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_IN:
+            {
+                printf("Command: in. \n");
+
+                int a = 0;
+                printf("Enter param a. \n");
+
+                scanf("%d", &a);
+
+                stkpush(&(proc -> stk), a);
+                printf("Param a = %d. \n", a);
+
+                (proc -> ip)++;
+
+                printf("\n");
+
+                break;
+            }
+
+
 
 
         }
