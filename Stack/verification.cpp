@@ -13,7 +13,7 @@ void printstk(stack* stk)
 
 void PrintInt (int val)
 {
-    printf ("%d", val);
+    printf ("%d ", val);
 }
 
 void PrintLongInt (long int val)

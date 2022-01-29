@@ -61,5 +61,5 @@ datatype stkpop(stack* stk)
 
     printf("\n");
 
-    return(stk -> data[(stk -> size) + 1]);
+    return(stk -> data[(stk -> size)]);
 }

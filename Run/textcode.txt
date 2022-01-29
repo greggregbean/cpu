@@ -1,20 +1,26 @@
+push 1
 push 2
-push 2
-push 2
-push 2
-push 2
-push   rax
-push rbx
-push rcx
-push rdx
+push 3
+push 4
+push 5
 pop rax
 pop rbx
 pop rcx
 pop rdx
+push rax
+push rbx
+push rcx
+push rdx
 pop
 out
 add
 sub
+push 11
+push 12
+push 9
+push 8
+push 13
+push 10
 mul
 div
 sqrt
