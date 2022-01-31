@@ -83,11 +83,11 @@ int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, in
         return -1;
 }
 
-void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize)
+void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize, int typeOfJmp)
 {
-        fprintf(distance, "%d ", CMD_JMP);
+        fprintf(distance, "%d ", typeOfJmp);
 
-        commandLine[(*translatorIp)++] = CMD_JMP;
+        commandLine[(*translatorIp)++] = typeOfJmp;
 
         char nameOfLabel [MAXLABELNAME] = {'\0'};
 
@@ -233,7 +233,7 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
                 else if (typeOfCommand == numCommand)        \
                 {                                             \
                     fprintf(distance, "%d\n", numCommand);     \
-                    commandLine[(*translatorIp)++] = numCommand;   \
+                    commandLine[(*translatorIp)++] = numCommand;\
                     continue;                                    \
                 }                                                 \
 
@@ -241,9 +241,11 @@ void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuff
 
             #undef DEF_CMD
 
-            else if (typeOfCommand == CMD_JMP)
+            else if ( (typeOfCommand == CMD_JMP)   || (typeOfCommand == CMD_JMPA)  || (typeOfCommand == CMD_JMPAE) ||
+                      (typeOfCommand == CMD_JMPB)  || (typeOfCommand == CMD_JMPBE) || (typeOfCommand == CMD_JMPE)  ||
+                      (typeOfCommand == CMD_JMPNE) || (typeOfCommand == CMD_JMP)   || (typeOfCommand == CMD_JMPFR) )
             {
-                jumpDeterminator(source, distance, translatorIp, commandLine, labelBuffer, labelsSize);
+                jumpDeterminator(source, distance, translatorIp, commandLine, labelBuffer, labelsSize, typeOfCommand);
 
                 DumpLabels(labelBuffer, *translatorIp);
 

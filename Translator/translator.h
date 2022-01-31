@@ -36,7 +36,7 @@ enum CMDS
 
 void DumpCommandLine (int* CommandLine, int translatorIp);
 int labelDeterminator(char* nameOfLabel, int labelAdress, label* labelBuffer, int* labelsSize);
-void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize);
+void jumpDeterminator(FILE* source, FILE* distance,  int* translatorIp, int* commandLine, label* labelBuffer, int* labelsSize, int typeOfJmp);
 int determineCommand(char* command);
 int paramDeterminator(char* param, FILE* source, FILE* distance,  int* translatorIp, int* commandLine, int numOfCommand);
 void translator(FILE* source, FILE* distance, FILE* binarycode, label* labelBuffer, int* commandLine, int* translatorIp, int* labelsSize);

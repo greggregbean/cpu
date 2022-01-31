@@ -4,6 +4,7 @@
 #include <string.h>
 #include <txlib.h>
 #include <math.h>
+#include <time.h>
 
 FILE* LOGFILE = fopen("../logfile.txt", "w");
 

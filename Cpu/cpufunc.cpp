@@ -209,8 +209,209 @@ void cpufunc(cpu* proc, int lenOfCommandline)
                 break;
             }
 
+            case CMD_JMP:
+            {
+                printf("Command: jmp. \n");
 
+                (proc -> ip)++;
 
+                printf("Should jump to %d position. \n", proc -> commandLine [proc -> ip]);
+
+                proc -> ip = proc -> commandLine [proc -> ip];
+
+                printf("Now ip is %d. \n", proc -> ip);
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPA:
+            {
+                printf("Command: jmpa. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) > (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPAE:
+            {
+                printf("Command: jmpae. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) >= (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPB:
+            {
+                printf("Command: jmpb. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) < (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPBE:
+            {
+                printf("Command: jmpbe. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) <= (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPE:
+            {
+                printf("Command: jmpe. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) == (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            case CMD_JMPNE:
+            {
+                printf("Command: jmpne. \n");
+
+                (proc -> ip)++;
+
+                printf("Last eleement in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 1]);
+
+                printf("Previous element in data = %d. \n", proc -> stk.data [(proc -> stk.size) - 2]);
+
+                if((proc -> stk.data [(proc -> stk.size) - 1]) != (proc -> stk.data [(proc -> stk.size) - 2]))
+                {
+                    proc -> ip = proc -> commandLine [proc -> ip];
+
+                    printf("Jump. Now ip is %d. \n", proc -> ip);
+                }
+
+                else
+                {
+                    (proc -> ip)++;
+
+                    printf("No jump. \n");
+                }
+
+                printf("\n");
+
+                break;
+            }
+
+            default:
+            {
+                printf("Number of command: %d. \n", proc -> commandLine[proc -> ip]);
+
+                printf("Sorry. Proc does not have such command. \n");
+
+                proc -> commandLine[proc -> ip] = CMD_HLT;
+
+                printf("\n");
+
+                break;
+            }
 
         }
     }
